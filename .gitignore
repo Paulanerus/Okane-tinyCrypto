@@ -1,0 +1,10 @@
+.vscode/
+bin/
+obj/
+Makefile
+*.make
+build/
+*.sln
+.vs/
+main.cpp
+premake5.lua

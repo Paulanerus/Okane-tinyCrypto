@@ -50,10 +50,12 @@ namespace Okane
             {28, 55, 25, 21, 56},
             {27, 20, 39, 8, 14}};
 
+        std::string padding(const std::string& str, size_t bitrate);
+
         void keccakf(std::array<std::array<uint64_t, 5>, 5> &state);
 
         std::string keccak(const std::string &str, size_t capacity, size_t bitrate);
 
-        uint64_t rotl(uint64_t x, uint64_t y);
+        inline uint64_t rotl(uint64_t x, uint64_t y);
     };
 }

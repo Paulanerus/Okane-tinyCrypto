@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <cmath>
+#include <bitset>
 
 namespace Okane
 {
@@ -18,6 +19,26 @@ namespace Okane
     uint64_t Sha3::rotl(uint64_t x, uint64_t y)
     {
         return (((x) << (y)) | ((x) >> (64 - (y))));
+    }
+
+    std::string Sha3::padding(const std::string &str, size_t bitrate)
+    {
+        std::string binary{};
+
+        for (const auto &c : str)
+            binary += std::bitset<8>(c).to_string();
+
+        size_t length = binary.length();
+
+        if ((length + 3) % bitrate == 0)
+            return binary + "101";
+
+        binary += "1";
+
+        while ((length = binary.length() + 1) % bitrate != 0)
+            binary += "0";
+
+        return binary + "1";
     }
 
     void Sha3::keccakf(std::array<std::array<uint64_t, 5>, 5> &A)
@@ -78,7 +99,7 @@ namespace Okane
         // S = Keccak-f[r+c](S)
 
         // Squeezing phase
-        std::string Z;
+        std::string Z{};
 
         // while output is requested
         // Z = Z || S[x, y], for (x, y) such that x + 5 *y < bitrate / 64

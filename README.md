@@ -1,3 +1,3 @@
 # Okane-tinyCrypto
 
-small code collection for crypto oparations used by [Okane CLI](https://github.com/Paulanerus/Okane)
+small code collection for crypto operations used by [Okane CLI](https://github.com/Paulanerus/Okane)
